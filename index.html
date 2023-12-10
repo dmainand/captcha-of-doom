@@ -191,7 +191,7 @@
     <section class="LoginContainer">
         <section class="CompanyContainer">
             <div class="CompanyLogoConatiner">
-                <img class="CompanyLogoImg" src="/assets/logo.png">
+                <img class="CompanyLogoImg" src="assets/logo.png">
             </div>
             <div class="CompanyName">
                 Gentil Technologies
@@ -222,6 +222,9 @@
         </section>
         <section class="ButtonsContainer" v-show="codeAccess == acces">
             <div class="SignInButtonContainer">
+                <div style="margin-bottom: 5px;font-weight: bold">
+                    Il ne reste plus qu'à vérifier que tu n'es pas un robot !
+                </div>
                 <button class="SigninButton" @click="openPopup()">Contrôle d'hmuanité</button>
             </div>
     </section>
