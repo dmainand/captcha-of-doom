@@ -1,6 +1,6 @@
 # captcha of doom
 
-**Acces à la page de démo :** [https://baduxgames.github.io/captcha-of-doom/](https://baduxgames.github.io/captcha-of-doom/)
+**Acces à la page de démo :** [https://dmainand.github.io/captcha-of-doom/](https://dmainand.github.io/captcha-of-doom/)
 
 Il s'agit d'une proposition pour l'édition 2023.1 des [Bad Ux Games](baduxgames.wtf), 
 en l'honneur des 30 ans du [vénérable Doom](https://fr.wikipedia.org/wiki/Doom_(jeu_vid%C3%A9o,_1993)) ce 10/12/2023.
