@@ -1,0 +1,275 @@
+<html>
+<head>
+    <title>Contrôle d'accès avancé</title>
+</head>
+<script>
+
+</script>
+<style>
+    :root {
+        --input-height: 35px;
+    }
+
+    body {
+        margin: 0px;
+        background-color: aliceblue;
+    }
+
+    .LoginContainer{
+        background-color: honeydew;
+        width: 400px;
+        padding: 30px;
+        box-shadow: 10px 10px 45px 0px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 10px 10px 45px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 45px 0px rgba(0,0,0,0.75);
+    }
+
+    .MainContainer{
+        height: calc(100vh - 40px);
+        width: calc(100vw - 40px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .CompanyContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+
+    .CompanyLogoConatiner{
+        padding-right: 10px;
+    }
+
+    .CompanyLogoImg{
+        height: 60px;
+    }
+
+    .CompanyName{
+        font-size: 30px;
+        font-weight: bolder;
+    }
+
+    .LoginHeaderTitle{
+        font-size: 25px;
+        padding-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .FormContainer{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        height: max-content;
+    }
+
+    .FormContainer .InputContainer{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: max-content;
+    }
+
+    .InputContainer .label{
+        display: block;
+        font-weight: bold;
+        padding-bottom: 5px;
+    }
+
+    .InputContainer .input{
+        width: calc(100% - 6px);
+        line-height: var(--input-height);
+        font-size: large;
+        border-radius: 5px;
+        border: 1px solid grey;
+    }
+
+    .InputContainer .PasswordInputContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0px;
+    }
+
+    .InputContainer .PasswordInputContainer .input{
+        width: 90%;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-right: 0px;
+    }
+
+    .InputContainer .PasswordInputContainer .ShowPasswordButton{
+        cursor: pointer;
+        width: 10%;
+        height: calc(var(--input-height) + 4px);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: 1px solid grey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-left: 0px;
+    }
+
+    .InputContainer .PasswordInputContainer .ShowPasswordButton:hover svg{
+        fill: black;
+    }
+
+    .InputContainer .PasswordLabel{
+        font-weight: bold;
+        color: gray;
+        font-size: 13px;
+        padding-top: 5px;
+    }
+
+    .InputContainer.RememberForgotContainer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .InputContainer .CheckboxInput{
+        margin: 0px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .ForgotPasswordContainer{
+        color: red;
+        cursor: pointer;
+    }
+
+    .ButtonsContainer .SignInButtonContainer .SigninButton:hover{
+        background-color: #2863b4;
+    }
+
+    .ButtonsContainer .SignInButtonContainer .SigninButton{
+        width: 100%;
+        background-color: #2d70ce;
+        color: white;
+        border-radius: 10px;
+        border: 0px;
+        padding: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .ButtonsContainer .OthersButtonContainer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 10px;
+    }
+
+    .ButtonsContainer .OthersButtonContainer button{
+        width: 48%;
+        font-size: 15px;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 7px;
+        border: 0px;
+    }
+
+    .FooterContainer{
+        padding-top: 30px;
+        text-align: center;
+    }
+
+    .SignUpLink{
+        color: #2d70ce;
+        cursor: pointer;
+    }
+</style>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<body>
+<section id="app" class="MainContainer">
+    <section class="LoginContainer">
+        <section class="CompanyContainer">
+            <div class="CompanyLogoConatiner">
+                <img class="CompanyLogoImg" src="/assets/logo.png">
+            </div>
+            <div class="CompanyName">
+                Gentil Technologies
+            </div>
+        </section>
+        <section class="LoginHeaderContainer">
+            <div class="LoginHeaderTitle">
+                Contrôle d'accès avancé
+            </div>
+            <div class="LoginHeaderSubTitle">
+                Pour valider ton opération ultra-sensible, entre ton code d'accès à 3 chiffres
+            </div>
+        </section>
+        <section class="FormContainer">
+            <div class="InputContainer">
+                <label class="label">Code d'accès</label>
+                <div class="PasswordInputContainer">
+                    <input class="input" type="range" v-model="codeAccess" min="0" max="999">
+                    <button class="ShowPasswordButton">
+                        {{codeAccess}}
+                    </button>
+                </div>
+                <label class="PasswordLabel" v-if="helpEnabled">{{helpMsg}}</label>
+            </div>
+            <div class="InputContainer RememberForgotContainer">
+                <div class="ForgotPasswordContainer">Mot de passe oublié ? <a @click="helpEnabled=true" style="color: #0000aa; font-weight: bold">Clique ici pour un peu d'aide</a></div>
+            </div>
+        </section>
+        <section class="ButtonsContainer" v-show="codeAccess == acces">
+            <div class="SignInButtonContainer">
+                <button class="SigninButton" @click="openPopup()">Contrôle d'hmuanité</button>
+            </div>
+    </section>
+</section>
+</body>
+</html>
+
+<script>
+    const { createApp, ref, computed } = Vue
+
+    createApp({
+        setup() {
+            console.log("setup")
+            const message = ref('Hello vue!')
+            const codeAccess = ref(0);
+            const helpEnabled = ref(false);
+
+            const openPopup = () => {
+                window.open('doom.html','controleAcces','width=1280,height=720')
+            }
+
+            const acces = 666;
+
+            const helpMsg = computed(() => {
+                let emoji = "🔥🔥 presque ! 🔥🔥";
+                if (Math.abs(codeAccess.value - acces) > 100) {
+                    emoji= "🥶🥶 pas du tout 🥶🥶"
+                } else if (Math.abs(codeAccess.value - acces) > 50) {
+                    emoji= emoji= "🥶 pas tout à fait 🥶"
+                } else if (Math.abs(codeAccess.value - acces) > 25) {
+                    emoji= "🔥 tu chauffes ! 🔥"
+                }
+                if ( codeAccess.value == acces ) {
+                    return "🏆 Bravo !"
+                } else if ( codeAccess.value > acces ) {
+                    return emoji + " (vise plus petit)"
+                } else if ( codeAccess.value < acces ) {
+                    return emoji + " (vise plus grand)"
+                }
+            })
+            return {
+                message,
+                codeAccess,
+                helpEnabled,
+                helpMsg,
+                acces,
+                openPopup
+            }
+        }
+    }).mount('#app')
+</script>
